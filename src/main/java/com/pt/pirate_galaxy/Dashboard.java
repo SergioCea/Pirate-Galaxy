@@ -4,18 +4,39 @@
  */
 package com.pt.pirate_galaxy;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author Sergio Cea
  */
 public class Dashboard extends javax.swing.JFrame {
 
+    Connect c ;
+    Connection conn;
+    //JMenuItem misiones;
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setIconImage(getIconImage());
+        //this.setMisionesMenu();
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage("C:\\Users\\Sergio Cea\\Documents\\NetBeansProjects\\pirate_galaxy\\src\\main\\java\\images\\pirategalaxy_skull.png");
+        return retValue;
     }
 
     /**
@@ -38,14 +59,21 @@ public class Dashboard extends javax.swing.JFrame {
         jNavesDraconis = new javax.swing.JMenuItem();
         jNavesSirius = new javax.swing.JMenuItem();
         jNavesTauCeti = new javax.swing.JMenuItem();
-        jPlanos = new javax.swing.JMenu();
-        jPlanosVega = new javax.swing.JMenuItem();
-        jPlanosAntares = new javax.swing.JMenuItem();
-        jPlanosGemini = new javax.swing.JMenuItem();
-        jPlanosMizar = new javax.swing.JMenuItem();
-        jPlanosSol = new javax.swing.JMenuItem();
-        jPlanosDraconis = new javax.swing.JMenuItem();
-        jPlanosTauCeti = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuAzules = new javax.swing.JMenu();
+        jAzulesVega = new javax.swing.JMenuItem();
+        jAzulesAntares = new javax.swing.JMenuItem();
+        jAzulesGemini = new javax.swing.JMenuItem();
+        jAzulesMizar = new javax.swing.JMenuItem();
+        jAzulesSol = new javax.swing.JMenuItem();
+        jAzulesDraconis = new javax.swing.JMenuItem();
+        jMenuDorados = new javax.swing.JMenu();
+        jDoradoVega = new javax.swing.JMenuItem();
+        jDoradoAntares = new javax.swing.JMenuItem();
+        jDoradoGemini = new javax.swing.JMenuItem();
+        jDoradoMizar = new javax.swing.JMenuItem();
+        jDoradoSol = new javax.swing.JMenuItem();
+        jDoradoDraconis = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Opciones");
@@ -87,64 +115,162 @@ public class Dashboard extends javax.swing.JFrame {
         jNaves.add(jNavesAntares);
 
         jNavesGemini.setText("Gemini");
+        jNavesGemini.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNavesGeminiActionPerformed(evt);
+            }
+        });
         jNaves.add(jNavesGemini);
 
         jNavesMizar.setText("Mizar");
+        jNavesMizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNavesMizarActionPerformed(evt);
+            }
+        });
         jNaves.add(jNavesMizar);
 
         jNavesSol.setText("Sol");
+        jNavesSol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNavesSolActionPerformed(evt);
+            }
+        });
         jNaves.add(jNavesSol);
 
         jNavesDraconis.setText("Draconis");
+        jNavesDraconis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNavesDraconisActionPerformed(evt);
+            }
+        });
         jNaves.add(jNavesDraconis);
 
         jNavesSirius.setText("Sirius");
+        jNavesSirius.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNavesSiriusActionPerformed(evt);
+            }
+        });
         jNaves.add(jNavesSirius);
 
         jNavesTauCeti.setText("Tau Ceti");
+        jNavesTauCeti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNavesTauCetiActionPerformed(evt);
+            }
+        });
         jNaves.add(jNavesTauCeti);
 
         jMenuOpciones.add(jNaves);
 
-        jPlanos.setText("Planos");
-        jPlanos.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("Planos");
+
+        jMenuAzules.setText("Azules");
+
+        jAzulesVega.setText("Vega");
+        jAzulesVega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPlanosActionPerformed(evt);
+                jAzulesVegaActionPerformed(evt);
             }
         });
+        jMenuAzules.add(jAzulesVega);
 
-        jPlanosVega.setText("Vega");
-        jPlanosVega.addActionListener(new java.awt.event.ActionListener() {
+        jAzulesAntares.setText("Antares");
+        jAzulesAntares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPlanosVegaActionPerformed(evt);
+                jAzulesAntaresActionPerformed(evt);
             }
         });
-        jPlanos.add(jPlanosVega);
+        jMenuAzules.add(jAzulesAntares);
 
-        jPlanosAntares.setText("Antares");
-        jPlanosAntares.addActionListener(new java.awt.event.ActionListener() {
+        jAzulesGemini.setText("Gemini");
+        jAzulesGemini.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPlanosAntaresActionPerformed(evt);
+                jAzulesGeminiActionPerformed(evt);
             }
         });
-        jPlanos.add(jPlanosAntares);
+        jMenuAzules.add(jAzulesGemini);
 
-        jPlanosGemini.setText("Gemini");
-        jPlanos.add(jPlanosGemini);
+        jAzulesMizar.setText("Mizar");
+        jAzulesMizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAzulesMizarActionPerformed(evt);
+            }
+        });
+        jMenuAzules.add(jAzulesMizar);
 
-        jPlanosMizar.setText("Mizar");
-        jPlanos.add(jPlanosMizar);
+        jAzulesSol.setText("Sol");
+        jAzulesSol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAzulesSolActionPerformed(evt);
+            }
+        });
+        jMenuAzules.add(jAzulesSol);
 
-        jPlanosSol.setText("Sol");
-        jPlanos.add(jPlanosSol);
+        jAzulesDraconis.setText("Draconis");
+        jAzulesDraconis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAzulesDraconisActionPerformed(evt);
+            }
+        });
+        jMenuAzules.add(jAzulesDraconis);
 
-        jPlanosDraconis.setText("Draconis");
-        jPlanos.add(jPlanosDraconis);
+        jMenu1.add(jMenuAzules);
 
-        jPlanosTauCeti.setText("Sirius");
-        jPlanos.add(jPlanosTauCeti);
+        jMenuDorados.setText("Dorados");
 
-        jMenuOpciones.add(jPlanos);
+        jDoradoVega.setText("Vega");
+        jDoradoVega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoradoVegaActionPerformed(evt);
+            }
+        });
+        jMenuDorados.add(jDoradoVega);
+
+        jDoradoAntares.setText("Antares");
+        jDoradoAntares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoradoAntaresActionPerformed(evt);
+            }
+        });
+        jMenuDorados.add(jDoradoAntares);
+
+        jDoradoGemini.setText("Gemini");
+        jDoradoGemini.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoradoGeminiActionPerformed(evt);
+            }
+        });
+        jMenuDorados.add(jDoradoGemini);
+
+        jDoradoMizar.setText("Mizar");
+        jDoradoMizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoradoMizarActionPerformed(evt);
+            }
+        });
+        jMenuDorados.add(jDoradoMizar);
+
+        jDoradoSol.setText("Sol");
+        jDoradoSol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoradoSolActionPerformed(evt);
+            }
+        });
+        jMenuDorados.add(jDoradoSol);
+
+        jDoradoDraconis.setText("Draconis");
+        jDoradoDraconis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDoradoDraconisActionPerformed(evt);
+            }
+        });
+        jMenuDorados.add(jDoradoDraconis);
+
+        jMenu1.add(jMenuDorados);
+
+        jMenuOpciones.add(jMenu1);
 
         setJMenuBar(jMenuOpciones);
 
@@ -159,11 +285,39 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jDesktopDes)
         );
 
-        getAccessibleContext().setAccessibleName("Opciones");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Error de redundancia en la variable misiones
+    /*private void setMisionesMenu () {
+        c = new Connect ();
+        conn = c.getConnection();
+                          
+        try {
+            Statement stm = conn.createStatement();
+            ResultSet counter = stm.executeQuery("SELECT * FROM `sistemas`");
+
+            int count = 0;
+            while(counter.next()){count++;}
+            
+            
+            ResultSet se = stm.executeQuery("SELECT * FROM `sistemas`");
+            
+
+            while(se.next()){
+                misiones = new javax.swing.JMenuItem();
+                misiones.setText(se.getString("nombre"));
+                misiones.addActionListener(this::jMisionesActionPerformed);
+                Misiones.add(misiones);
+            }
+            
+        }catch (SQLException e){
+            System.out.println("ERROR");
+        }
+    }*/
+    
+   
+    //Naves
     private void jNavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesActionPerformed
         // TODO add your handling code here:
        
@@ -172,27 +326,190 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jNavesVegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesVegaActionPerformed
         // TODO add your handling code here:
-         NavesVega navVega = new NavesVega();
+        String sistema = jNavesVega.getText();
+        Naves navVega = null;
+        try {
+            navVega = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jDesktopDes.add(navVega);
         navVega.show();
     }//GEN-LAST:event_jNavesVegaActionPerformed
 
     private void jNavesAntaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesAntaresActionPerformed
         // TODO add your handling code here:
+        String sistema = jNavesAntares.getText();
+        Naves antares = null;
+        try {
+            antares = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDesktopDes.add(antares);
+        antares.show();
     }//GEN-LAST:event_jNavesAntaresActionPerformed
 
-    private void jPlanosVegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPlanosVegaActionPerformed
+    private void jNavesGeminiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesGeminiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPlanosVegaActionPerformed
+        String sistema = jNavesAntares.getText();
+        Naves gemini = null;
+        try {
+            gemini = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDesktopDes.add(gemini);
+        gemini.show();
+    }//GEN-LAST:event_jNavesGeminiActionPerformed
 
-    private void jPlanosAntaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPlanosAntaresActionPerformed
+    private void jNavesMizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesMizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPlanosAntaresActionPerformed
+        String sistema = jNavesMizar.getText();
+        Naves mizar = null;
+        try {
+            mizar = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDesktopDes.add(mizar);
+        mizar.show();
+    }//GEN-LAST:event_jNavesMizarActionPerformed
 
-    private void jPlanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPlanosActionPerformed
+    private void jNavesSolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesSolActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPlanosActionPerformed
+        String sistema = jNavesSol.getText();
+        Naves sol = null;
+        try {
+            sol = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDesktopDes.add(sol);
+        sol.show();
+    }//GEN-LAST:event_jNavesSolActionPerformed
 
+    private void jNavesDraconisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesDraconisActionPerformed
+        // TODO add your handling code here:
+        String sistema = jNavesDraconis.getText();
+        Naves draco = null;
+        try {
+            draco = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDesktopDes.add(draco);
+        draco.show();
+    }//GEN-LAST:event_jNavesDraconisActionPerformed
+
+    private void jNavesSiriusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesSiriusActionPerformed
+        // TODO add your handling code here:
+        String sistema = jNavesSirius.getText();
+        Naves sirius = null;
+        try {
+            sirius = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDesktopDes.add(sirius);
+        sirius.show();
+    }//GEN-LAST:event_jNavesSiriusActionPerformed
+
+    private void jNavesTauCetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNavesTauCetiActionPerformed
+        // TODO add your handling code here:
+        String sistema = jNavesTauCeti.getText();
+        Naves tau = null;
+        try {
+            tau = new Naves(sistema);
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jDesktopDes.add(tau);
+        tau.show();
+    }//GEN-LAST:event_jNavesTauCetiActionPerformed
+
+    //Planos Draconis
+    private void jAzulesDraconisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAzulesDraconisActionPerformed
+        // TODO add your handling code here:
+        String sistema = jAzulesDraconis.getText();
+        String tipo;
+        Planos draconis;
+        if (jMenuAzules.getText().equalsIgnoreCase("Azules")) {
+            tipo = "Azul";
+            draconis = new Planos(sistema, tipo);
+            jDesktopDes.add(draconis);
+            draconis.show();
+        }
+    }//GEN-LAST:event_jAzulesDraconisActionPerformed
+
+    private void jDoradoDraconisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoradoDraconisActionPerformed
+        // TODO add your handling code here:
+        String sistema = jDoradoDraconis.getText();
+        String tipo;
+        Planos draconis;
+        if (jMenuDorados.getText().equalsIgnoreCase("Dorados")) {
+            tipo = "Dorado";
+            draconis = new Planos(sistema, tipo);
+            jDesktopDes.add(draconis);
+            draconis.show();
+        }
+    }//GEN-LAST:event_jDoradoDraconisActionPerformed
+
+    //Planos Azules
+    private void jAzulesVegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAzulesVegaActionPerformed
+        // TODO add your handling code here:
+        String sistema = jAzulesVega.getText();
+        String tipo;
+        Planos vega;
+        if (jMenuAzules.getText().equalsIgnoreCase("Azules")) {
+            tipo = "Azul";
+            vega = new Planos(sistema, tipo);
+            jDesktopDes.add(vega);
+            vega.show();
+        }
+    
+    }//GEN-LAST:event_jAzulesVegaActionPerformed
+
+    private void jAzulesAntaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAzulesAntaresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAzulesAntaresActionPerformed
+
+    private void jAzulesGeminiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAzulesGeminiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAzulesGeminiActionPerformed
+
+    private void jAzulesMizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAzulesMizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAzulesMizarActionPerformed
+
+    private void jAzulesSolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAzulesSolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jAzulesSolActionPerformed
+
+    //Planso Dorados
+    private void jDoradoVegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoradoVegaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDoradoVegaActionPerformed
+
+    private void jDoradoAntaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoradoAntaresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDoradoAntaresActionPerformed
+
+    private void jDoradoGeminiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoradoGeminiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDoradoGeminiActionPerformed
+
+    private void jDoradoMizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoradoMizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDoradoMizarActionPerformed
+
+    private void jDoradoSolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDoradoSolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDoradoSolActionPerformed
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -229,7 +546,22 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jAzulesAntares;
+    private javax.swing.JMenuItem jAzulesDraconis;
+    private javax.swing.JMenuItem jAzulesGemini;
+    private javax.swing.JMenuItem jAzulesMizar;
+    private javax.swing.JMenuItem jAzulesSol;
+    private javax.swing.JMenuItem jAzulesVega;
     private javax.swing.JDesktopPane jDesktopDes;
+    private javax.swing.JMenuItem jDoradoAntares;
+    private javax.swing.JMenuItem jDoradoDraconis;
+    private javax.swing.JMenuItem jDoradoGemini;
+    private javax.swing.JMenuItem jDoradoMizar;
+    private javax.swing.JMenuItem jDoradoSol;
+    private javax.swing.JMenuItem jDoradoVega;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenuAzules;
+    private javax.swing.JMenu jMenuDorados;
     private javax.swing.JMenuBar jMenuOpciones;
     private javax.swing.JMenu jNaves;
     private javax.swing.JMenuItem jNavesAntares;
@@ -240,13 +572,5 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuItem jNavesSol;
     private javax.swing.JMenuItem jNavesTauCeti;
     private javax.swing.JMenuItem jNavesVega;
-    private javax.swing.JMenu jPlanos;
-    private javax.swing.JMenuItem jPlanosAntares;
-    private javax.swing.JMenuItem jPlanosDraconis;
-    private javax.swing.JMenuItem jPlanosGemini;
-    private javax.swing.JMenuItem jPlanosMizar;
-    private javax.swing.JMenuItem jPlanosSol;
-    private javax.swing.JMenuItem jPlanosTauCeti;
-    private javax.swing.JMenuItem jPlanosVega;
     // End of variables declaration//GEN-END:variables
 }

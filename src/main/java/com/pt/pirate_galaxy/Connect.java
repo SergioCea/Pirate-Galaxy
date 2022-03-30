@@ -4,9 +4,9 @@
  */
 package com.pt.pirate_galaxy;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Connection;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Connect {
     private static final String user = "root";
     private static final String pass = "root";
     private static final String db = "pt_galaxy";
-    private static final String url = "jdbc:mysql://172.30.38.225/"+db+"";
+    private static final String url = "jdbc:mysql://localhost/"+db+"";
     
     public Connect(){
         conn = null;
@@ -29,10 +29,6 @@ public class Connect {
             // Connect?
             if(conn != null)
                 System.out.println("Conexión establecida exitosamente");
-                Conexion conect = new Conexion() {};
-                Dashboard dash = new Dashboard();
-                dash.setVisible(true);
-                conect.setVisible(false);
         }catch (ClassNotFoundException | SQLException ex){
             System.out.println("Conexión Fallida:\n\n"+ex);
         }
@@ -42,5 +38,3 @@ public class Connect {
         return conn;
     }
 }
-
-

@@ -7,6 +7,9 @@ package com.pt.pirate_galaxy;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,8 +17,12 @@ import java.sql.Connection;
  */
 public class Conexion extends javax.swing.JFrame {
 
-    Connect conn;
-    Connection reg;
+    private static Connection conn;
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
+    private static final String user = "root";
+    private static final String pass = "root";
+    private static final String db = "pt_galaxy";
+    private static final String url = "jdbc:mysql://localhost/"+db+"";
     /**
      * Creates new form Connection
      */
@@ -23,6 +30,7 @@ public class Conexion extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setIconImage(getIconImage());
+        
         
     }
     
@@ -46,7 +54,7 @@ public class Conexion extends javax.swing.JFrame {
         jButtonExit = new javax.swing.JButton();
         javax.swing.JLabel jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -91,8 +99,23 @@ public class Conexion extends javax.swing.JFrame {
 
     private void jButtonConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConActionPerformed
         // TODO add your handling code here:
-        conn = new Connect();
-        reg = conn.getConnection();
+        conn = null;
+       
+        try{
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, user, pass);
+            
+            // Connect?
+            if(conn != null)
+                //System.out.println("Conexión establecida exitosamente");
+                JOptionPane.showMessageDialog(null, "Conexión establecida exitosamente");
+                Dashboard dash = new Dashboard();
+                dash.setVisible(true);
+                dispose();
+        }catch (ClassNotFoundException | SQLException ex){
+            JOptionPane.showMessageDialog(null, "Conexión Fallida:\n\n"+ex);
+            //System.out.println("Conexión Fallida:\n\n"+ex);
+        }
     }//GEN-LAST:event_jButtonConActionPerformed
 
     /**
